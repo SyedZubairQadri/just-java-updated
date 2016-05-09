@@ -43,9 +43,8 @@ int quantity = 2 ;
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
-        String priceMessage = createOrderSummary(price);
-        displayMessage(priceMessage);
+
+        displayMessage(createOrderSummary(calculatePrice()));
 
     }
 /**
@@ -53,16 +52,17 @@ int quantity = 2 ;
  * @return total price
  *
  */
-        private int  calculatePrice() {
-            int price = quantity * 5 ;
-            return price;
+        private int calculatePrice( ) {
+           return   quantity * 5 ;
+
 
         }
         private String createOrderSummary(int price ){
-            String priceMessage = " Name : Syed Zubair Qadri" ;
+            String priceMessage = "Name :Syed Zubair Qadri" ;
             priceMessage = priceMessage +"\nQuantity : " + quantity ;
-            priceMessage = priceMessage +  "\nTotal: $ " + price ;
-            priceMessage = priceMessage + " \nTHANK YOU FOR OUR DHANDA :p " ;
+            priceMessage = priceMessage +  "\nTotal: $ " + calculatePrice() ;
+            priceMessage = priceMessage +  "\n SUKRIA PINY K LIYE ";
+            priceMessage = priceMessage + " \nTHANK YOU FOR OUR DHANDA :D :D " ;
             return priceMessage;
         }
 
@@ -78,18 +78,11 @@ int quantity = 2 ;
     }
 
     /**
-     * This method displays the given price value on the screen.
-     */
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
-    /**
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView order_summary_text_view = (TextView) findViewById(R.id.order_summary_text_view);
+        order_summary_text_view.setText(message);
     }
 
 
