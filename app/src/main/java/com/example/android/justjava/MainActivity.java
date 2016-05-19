@@ -1,12 +1,11 @@
 package com.example.android.justjava;
 
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
-
-import java.text.NumberFormat;
 
 /**
  * This app displays an order form to order coffee.
@@ -43,8 +42,20 @@ int quantity = 2 ;
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        EditText nameField = (EditText)findViewById(R.id.name_field);
+        String name = nameField.getText().toString();
 
-        displayMessage(createOrderSummary(calculatePrice()));
+        CheckBox whippedCreamCheckBox = (CheckBox)findViewById(R.id.whipped_cream_checkBox);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+
+        CheckBox chocolateChecBox = (CheckBox)findViewById(R.id.Chocolate_checkBox);
+        boolean hasChocolate = chocolateChecBox.isChecked();
+
+        int price =calculatePrice();
+        String priceMessage =createOrderSummary(name,price,hasWhippedCream,hasChocolate);
+        displayMessage(priceMessage);
+
+
 
     }
 /**
@@ -52,19 +63,23 @@ int quantity = 2 ;
  * @return total price
  *
  */
-        private int calculatePrice( ) {
-           return   quantity * 5 ;
+        private int calculatePrice( ) {return   quantity * 5 ;
 
 
         }
-        private String createOrderSummary(int price ){
-            String priceMessage = "Name :Syed Zubair Qadri" ;
+        private String createOrderSummary(String name ,int price,boolean addwhippedCream,boolean hasChocolate ){
+            String priceMessage = "Name : " + name ;
             priceMessage = priceMessage +"\nQuantity : " + quantity ;
+            priceMessage = priceMessage + "\nAdd Whipped Cream " +addwhippedCream;
+            priceMessage = priceMessage + "\nAdd Chocolate " +hasChocolate;
             priceMessage = priceMessage +  "\nTotal: $ " + calculatePrice() ;
             priceMessage = priceMessage +  "\n SUKRIA PINY K LIYE ";
             priceMessage = priceMessage + " \nTHANK YOU FOR OUR DHANDA :D :D " ;
             return priceMessage;
         }
+
+
+
 
 
 
