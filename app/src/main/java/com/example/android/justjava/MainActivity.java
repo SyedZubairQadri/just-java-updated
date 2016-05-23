@@ -1,7 +1,7 @@
 package com.example.android.justjava;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 /**
  * This app displays an order form to order coffee.
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
 int quantity = 2 ;
 
@@ -51,9 +51,11 @@ int quantity = 2 ;
         CheckBox chocolateChecBox = (CheckBox)findViewById(R.id.Chocolate_checkBox);
         boolean hasChocolate = chocolateChecBox.isChecked();
 
-        int price =calculatePrice();
+        int price = calculatePrice(hasWhippedCream,hasChocolate);
         String priceMessage =createOrderSummary(name,price,hasWhippedCream,hasChocolate);
         displayMessage(priceMessage);
+
+
 
 
 
@@ -63,18 +65,28 @@ int quantity = 2 ;
  * @return total price
  *
  */
-        private int calculatePrice( ) {return   quantity * 5 ;
+        private int calculatePrice(boolean addWhippedCream,boolean addChocolate) {
+            int basePrice = 5;
+            if (addWhippedCream){
+                basePrice = basePrice+1;
+            }
+            if (addChocolate){
+                basePrice =basePrice +3;
+            }
 
+
+            return   quantity * basePrice ;
 
         }
+
         private String createOrderSummary(String name ,int price,boolean addwhippedCream,boolean hasChocolate ){
             String priceMessage = "Name : " + name ;
             priceMessage = priceMessage +"\nQuantity : " + quantity ;
             priceMessage = priceMessage + "\nAdd Whipped Cream " +addwhippedCream;
             priceMessage = priceMessage + "\nAdd Chocolate " +hasChocolate;
-            priceMessage = priceMessage +  "\nTotal: $ " + calculatePrice() ;
+            priceMessage = priceMessage +  "\nTotal: $ " + price ;
             priceMessage = priceMessage +  "\n SUKRIA PINY K LIYE ";
-            priceMessage = priceMessage + " \nTHANK YOU FOR OUR DHANDA :D :D " ;
+            priceMessage = priceMessage + " \n Zabi-developer@gmail.com " ;
             return priceMessage;
         }
 
