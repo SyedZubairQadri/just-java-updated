@@ -6,13 +6,14 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
 
-int quantity = 2 ;
+    int quantity = 99;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +25,28 @@ int quantity = 2 ;
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
+        if (quantity == 100) {
+
+        Toast.makeText(this, "you cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();
+        return;
+    }
+
         quantity = quantity + 1;
         display(quantity);
+
     }
 
     /**
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
-        quantity = quantity - 1;
+        if (quantity == 1){
+
+        Toast.makeText(this, "you cannot have less than 1 coffees", Toast.LENGTH_SHORT).show();
+        return;
+    }
+
+      quantity = quantity - 1;
         display(quantity);
 
 
@@ -85,7 +99,7 @@ int quantity = 2 ;
             priceMessage = priceMessage + "\nAdd Whipped Cream " +addwhippedCream;
             priceMessage = priceMessage + "\nAdd Chocolate " +hasChocolate;
             priceMessage = priceMessage +  "\nTotal: $ " + price ;
-            priceMessage = priceMessage +  "\n SUKRIA PINY K LIYE ";
+            priceMessage = priceMessage +  "\n SUKRIA THOSSNY K LIYE ";
             priceMessage = priceMessage + " \n Zabi-developer@gmail.com " ;
             return priceMessage;
         }
